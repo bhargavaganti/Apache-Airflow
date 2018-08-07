@@ -1,5 +1,5 @@
 <h3>Google (GCP) Cloud Composer (<a href="https://airflow.apache.org/index.html">Apache Airflow</a>)</h3>
-Helpful Scripts, Configs, and Commands
+This repo contains helpful Scripts, Configs, and Commands
 <br>
 <br><b>Create Cloud Composer (Apache Airflow) Environment</b>
 <br><pre><code>gcloud composer environments create z-cloud-composer1 \
