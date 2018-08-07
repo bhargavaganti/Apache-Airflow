@@ -6,7 +6,7 @@ Helpful Scripts, Configs, and Commands
   --location us-east1 \
   --zone us-east1-b \
   --machine-type n1-standard-1 \
-  --env-variables=gcp_project=zproject201807,gcs_bucket=gs://z-airflow-dags,gce_zone=us-east1-b</code></pre>
+  --env-variables=gcp_project=project123,gcs_bucket=gs://mybucket,gce_zone=us-east1-b</code></pre>
 
 <br><b>Delete Cloud Composer (Apache Airflow) Environment</b>
 <br><pre><code>gcloud composer environments delete z-cloud-composer1 \
