@@ -66,7 +66,7 @@ t3 = PythonOperator(
 
 
 t4 = MySqlOperator(
-        "select * from zdatabase.banking",
+        sql="select * from zdatabase.banking",
         mysql_conn_id="z_mysql_connection1",
         database="zdatabase",
         task_id="mysql_query",
