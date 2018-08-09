@@ -34,7 +34,11 @@ default_args = {
 
 
 # Create DAG object (workflow) that runs every 2 minutes.
-dag = DAG('airflow_demo_mysql', default_args=default_args, schedule_interval=timedelta(minutes=2) )
+dag = DAG('airflow_demo_mysql', 
+          default_args=default_args, 
+          schedule_interval=timedelta(minutes=2),
+          concurrency=1
+         )
 
 
 # Task to print date
