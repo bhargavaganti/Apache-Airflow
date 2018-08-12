@@ -1,10 +1,9 @@
-
 ###################################################################################
 #
 #   Cloud Composer (Apache Airflow)
 #
 #   Simple Demo of local scheduled commands (bash, python)
-#   Writes output to Airflow Log
+#   Writes output to Airflow log
 #
 ###################################################################################
 
@@ -34,21 +33,20 @@ default_args = {
     #'queue': 'bash_queue',
     #'pool': 'backfill',
     #'priority_weight': 10,
-    'task_concurrency': 1
+    'task_concurrency': 3
 }
 
 
 # Create DAG object (workflow) that runs every 2 minutes.
 # https://airflow.apache.org/code.html#airflow.models.DAG
 # https://airflow.apache.org/_modules/airflow/models.html#DAG
-dag = DAG('airflow_demo_simple1', 
+dag = DAG('airflow_demo_simple', 
             description='',
             schedule_interval=timedelta(minutes=2),
-            #start_date=datetime(2018,8,1),
-            start_date=datetime.now(),
+            start_date=datetime(2018,8,1),
             end_date=datetime(2018,12,31),
             default_args=default_args, 
-            #concurrency=1,
+            concurrency=1,
             default_view='tree',
             orientation='TB'
         )
