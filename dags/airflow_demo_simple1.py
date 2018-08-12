@@ -4,6 +4,7 @@
 #   Cloud Composer (Apache Airflow)
 #
 #   Simple Demo of local scheduled commands (bash, python)
+#   Writes output to Airflow Log
 #
 ###################################################################################
 
