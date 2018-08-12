@@ -32,20 +32,22 @@ default_args = {
     'retry_exponential_backoff': True,
     #'queue': 'bash_queue',
     #'pool': 'backfill',
-    #'priority_weight': 10
+    #'priority_weight': 10,
+    'task_concurrency': 1
 }
 
 
 # Create DAG object (workflow) that runs every 2 minutes.
 # https://airflow.apache.org/code.html#airflow.models.DAG
 # https://airflow.apache.org/_modules/airflow/models.html#DAG
-dag = DAG('airflow_demo_simple', 
+dag = DAG('airflow_demo_simple1', 
             description='',
             schedule_interval=timedelta(minutes=2),
-            start_date=datetime(2018,8,1),
+            #start_date=datetime(2018,8,1),
+            start_date=datetime.now(),
             end_date=datetime(2018,12,31),
             default_args=default_args, 
-            concurrency=1,
+            #concurrency=1,
             default_view='tree',
             orientation='TB'
         )
@@ -53,8 +55,8 @@ dag = DAG('airflow_demo_simple',
 
 # Task to print date
 t1 = BashOperator(
-    task_id='print_date',
-    description='Bash operation: Print datetime',
+    task_id='start_print_date',
+    description='Bash operation: Print datetime at start of DAG',
     bash_command='date',
     dag=dag)
 
@@ -68,13 +70,20 @@ t2 = BashOperator(
     dag=dag)
 
 
+t3 = BashOperator(
+    task_id='print_date_bash',
+    description='Bash operation: Print datetime',
+    bash_command='date',
+    dag=dag)
+
+
 # Simple python function for testing. Print msg with datetime.
 def simple_py_func():
     return ('DZ Message executed at ' + str(datetime.now()) )
 
 
 # Task to call python function ("simple_py_func")
-t3 = PythonOperator(
+t4 = PythonOperator(
         task_id='simple_py_func',
         description='Python operation: Call function',
         python_callable=simple_py_func,
@@ -82,10 +91,11 @@ t3 = PythonOperator(
         dag=dag)
 
 
+
 # Create DAG by specifying upstream tasks
 t2.set_upstream(t1)
 t3.set_upstream(t2)
-t1.set_upstream(t3)
+t4.set_upstream(t1)
 
 
 #ZEND
