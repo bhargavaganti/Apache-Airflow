@@ -136,7 +136,11 @@ CREATE TABLE delivereddatafiles (
   DeliveredDataFileID int NOT NULL AUTO_INCREMENT,
   Filename VARCHAR(100),
   RegisterDateTime DATETIME,
-  TypeOfFile VARCHAR(10),
+  TimeFrameOfFile CHAR(1),
+  DateOfFile VARCHAR(12),
+  IsReprocess INT,
+  TypeOfFile VARCHAR(5),
+  IsReissue INT,
   PRIMARY KEY (DeliveredDataFileID)
 );
 
